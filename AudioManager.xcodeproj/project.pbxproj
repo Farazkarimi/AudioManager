@@ -16,6 +16,7 @@
 		20575AE023FAEEDC00B7C1B9 /* OpusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20575ADD23FAEEDC00B7C1B9 /* OpusHelper.swift */; };
 		20575AE123FAEEDC00B7C1B9 /* EZAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20575ADE23FAEEDC00B7C1B9 /* EZAudioManager.swift */; };
 		20575AE223FAEEDC00B7C1B9 /* VoiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20575ADF23FAEEDC00B7C1B9 /* VoiceManager.swift */; };
+		20764A1523FAF47A00DE7243 /* opus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20764A1423FAF47A00DE7243 /* opus.framework */; };
 		D692F7370964FB84690CF643 /* Pods_AudioManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D87D29EE28003C39E05971 /* Pods_AudioManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		20575ADE23FAEEDC00B7C1B9 /* EZAudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAudioManager.swift; sourceTree = "<group>"; };
 		20575ADF23FAEEDC00B7C1B9 /* VoiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceManager.swift; sourceTree = "<group>"; };
 		20575AE323FAEFC400B7C1B9 /* AudioManager-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioManager-Bridging-Header.h"; sourceTree = "<group>"; };
+		20764A1423FAF47A00DE7243 /* opus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opus.framework; sourceTree = "<group>"; };
 		48C4D84657D9FF2BCEDA03EE /* Pods-AudioManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioManager.debug.xcconfig"; path = "Target Support Files/Pods-AudioManager/Pods-AudioManager.debug.xcconfig"; sourceTree = "<group>"; };
 		D4D87D29EE28003C39E05971 /* Pods_AudioManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -43,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D692F7370964FB84690CF643 /* Pods_AudioManager.framework in Frameworks */,
+				20764A1523FAF47A00DE7243 /* opus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +73,7 @@
 		20575AC623FAED0600B7C1B9 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
+				20764A1423FAF47A00DE7243 /* opus.framework */,
 				20575ADC23FAEECD00B7C1B9 /* Helpers */,
 				20575ADB23FAEEC300B7C1B9 /* Controllers */,
 				20575AC723FAED0700B7C1B9 /* AppDelegate.swift */,
@@ -387,6 +391,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XEV5Q3B6S8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AudioManager",
+				);
 				INFOPLIST_FILE = AudioManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -411,6 +419,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XEV5Q3B6S8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AudioManager",
+				);
 				INFOPLIST_FILE = AudioManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
