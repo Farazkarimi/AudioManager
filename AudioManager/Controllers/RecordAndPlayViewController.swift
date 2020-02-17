@@ -25,6 +25,7 @@ class RecordAndPlayViewController: UIViewController{
     var audioMutableBufferArray : [UnsafeMutablePointer<AudioBufferList>] = []
     var audioFile = EZAudioFile()
     var circularBuffer : TPCircularBuffer?
+    var opus = OpusHelper()
     
     @IBOutlet weak var plot: EZAudioPlot!
     
@@ -70,6 +71,7 @@ class RecordAndPlayViewController: UIViewController{
         microphone.microphoneOn = false
         output?.startPlayback()
         //VoiceManager.getIntance().playVoice()
+        print(opus.encode(audioArray[0], frameSize: 5))
         VoiceManager.getIntance().data = audioArray
         _=VoiceManager.getIntance().speakerEnabled(true)
         VoiceManager.getIntance().playVoice()
