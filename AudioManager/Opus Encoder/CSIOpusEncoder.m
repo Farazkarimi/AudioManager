@@ -50,7 +50,7 @@
         NSLog(@"Creating an encoder using Opus version %s", opus_get_version_string());
         
         int error;
-        self.encoder = opus_encoder_create(sampleRate, channels, 2048, &error);
+        self.encoder = opus_encoder_create(sampleRate, channels, OPUS_APPLICATION_VOIP, &error);
         
         if(error != OPUS_OK)
         {

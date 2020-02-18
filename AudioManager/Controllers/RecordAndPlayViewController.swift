@@ -26,7 +26,7 @@ class RecordAndPlayViewController: UIViewController{
     var audioMutableBufferArray : [UnsafeMutablePointer<AudioBufferList>] = []
     var audioFile = EZAudioFile()
     var circularBuffer : TPCircularBuffer?
-    var opus = CSIOpusEncoder(sampleRate: 48000, channels: 1, frameDuration: 60)
+    var opus = CSIOpusEncoder(sampleRate: 8000, channels: 1, frameDuration: 2)
     var opusHelper = OpusHelper()
     
     @IBOutlet weak var plot: EZAudioPlot!
