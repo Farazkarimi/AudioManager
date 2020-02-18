@@ -11,6 +11,7 @@ import Accelerate
 
 class RecordAndPlayViewController: UIViewController{
 
+    let samplaRate:Double = 8000
     var ezaUdio = EZAudio()
     var output : EZOutput? = nil
     let inputDevices = EZAudioDevice.inputDevices()
@@ -26,7 +27,7 @@ class RecordAndPlayViewController: UIViewController{
     var audioMutableBufferArray : [UnsafeMutablePointer<AudioBufferList>] = []
     var audioFile = EZAudioFile()
     var circularBuffer : TPCircularBuffer?
-    var opus = CSIOpusEncoder(sampleRate: 8000, channels: 1, frameDuration: 2)
+    var opus:CSIOpusEncoder!
     var opusHelper = OpusHelper()
     
     @IBOutlet weak var plot: EZAudioPlot!
@@ -34,6 +35,7 @@ class RecordAndPlayViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        opus = CSIOpusEncoder(sampleRate: samplaRate, channels: 1, frameDuration: 0.01)
 //        var streamDescription:AudioStreamBasicDescription=AudioStreamBasicDescription()
 //        streamDescription.mSampleRate       = 16000.0
 //        streamDescription.mFormatID         = kAudioFormatLinearPCM
@@ -49,7 +51,7 @@ class RecordAndPlayViewController: UIViewController{
         microphone = EZMicrophone(delegate: self)
         microphone.device = inputDevices?.last as! EZAudioDevice
         output!.device = currentOutputDevice
-        let monoFloatFormat = EZAudioUtilities.monoFloatFormat(withSampleRate: 44100.0)
+        let monoFloatFormat = EZAudioUtilities.monoFloatFormat(withSampleRate: Float(samplaRate))
         output!.inputFormat = monoFloatFormat
         //EZAudioManager.getIntance().showInfo()
         //microphone.delegate = self
@@ -73,7 +75,9 @@ class RecordAndPlayViewController: UIViewController{
         microphone.microphoneOn = false
         output?.startPlayback()
         //VoiceManager.getIntance().playVoice()
-        print(opus?.encode(buffers[0]))
+        buffers.forEach { (buffer) in
+             print(opus?.encode(buffer))
+        }
         //print(opusHelper.encode(audioArray[0], frameSize: 5))
         VoiceManager.getIntance().data = audioArray
         _=VoiceManager.getIntance().speakerEnabled(true)
