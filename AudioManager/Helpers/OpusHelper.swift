@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import opus
 
 class OpusHelper{
     var encoder: OpaquePointer = OpaquePointer(bitPattern: 16 * 5)!

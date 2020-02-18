@@ -21,11 +21,13 @@ class RecordAndPlayViewController: UIViewController{
     var audioPlot = EZAudioPlot()
     //var recorder = EZRecorder()
     var audioArray : [NSData] = []
+    var buffers: [UnsafeMutablePointer<AudioBufferList>] = []
     var audioBufferArray : [AudioBufferList] = []
     var audioMutableBufferArray : [UnsafeMutablePointer<AudioBufferList>] = []
     var audioFile = EZAudioFile()
     var circularBuffer : TPCircularBuffer?
-    var opus = OpusHelper()
+    var opus = CSIOpusEncoder(sampleRate: 48000, channels: 1, frameDuration: 60)
+    var opusHelper = OpusHelper()
     
     @IBOutlet weak var plot: EZAudioPlot!
     
@@ -71,7 +73,8 @@ class RecordAndPlayViewController: UIViewController{
         microphone.microphoneOn = false
         output?.startPlayback()
         //VoiceManager.getIntance().playVoice()
-        print(opus.encode(audioArray[0], frameSize: 5))
+        print(opus?.encode(buffers[0]))
+        //print(opusHelper.encode(audioArray[0], frameSize: 5))
         VoiceManager.getIntance().data = audioArray
         _=VoiceManager.getIntance().speakerEnabled(true)
         VoiceManager.getIntance().playVoice()
@@ -165,6 +168,7 @@ extension RecordAndPlayViewController : EZMicrophoneDelegate, EZOutputDataSource
                                      length: Int(bufferList.pointee.mBuffers.mDataByteSize))
         //print("audio :\(audio)")
         audioArray.append(audio)
+        buffers.append(bufferList)
 
         audioBufferArray.append(bufferList.pointee)
         audioMutableBufferArray.append(bufferList)

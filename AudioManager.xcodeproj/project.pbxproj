@@ -16,7 +16,9 @@
 		20575AE023FAEEDC00B7C1B9 /* OpusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20575ADD23FAEEDC00B7C1B9 /* OpusHelper.swift */; };
 		20575AE123FAEEDC00B7C1B9 /* EZAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20575ADE23FAEEDC00B7C1B9 /* EZAudioManager.swift */; };
 		20575AE223FAEEDC00B7C1B9 /* VoiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20575ADF23FAEEDC00B7C1B9 /* VoiceManager.swift */; };
-		20764A1723FAF72A00DE7243 /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20764A1623FAF72A00DE7243 /* libopus.a */; };
+		20764A2423FC04B100DE7243 /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20764A2323FC04B100DE7243 /* libopus.a */; };
+		20764A2A23FC058700DE7243 /* CSIDataQueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 20764A2623FC058700DE7243 /* CSIDataQueue.c */; };
+		20764A2B23FC058700DE7243 /* CSIOpusEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 20764A2923FC058700DE7243 /* CSIOpusEncoder.m */; };
 		D692F7370964FB84690CF643 /* Pods_AudioManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D87D29EE28003C39E05971 /* Pods_AudioManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +36,16 @@
 		20575ADE23FAEEDC00B7C1B9 /* EZAudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAudioManager.swift; sourceTree = "<group>"; };
 		20575ADF23FAEEDC00B7C1B9 /* VoiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceManager.swift; sourceTree = "<group>"; };
 		20575AE323FAEFC400B7C1B9 /* AudioManager-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AudioManager-Bridging-Header.h"; sourceTree = "<group>"; };
-		20764A1623FAF72A00DE7243 /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopus.a; sourceTree = "<group>"; };
+		20764A1D23FC04B100DE7243 /* opus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus.h; sourceTree = "<group>"; };
+		20764A1E23FC04B100DE7243 /* opus_multistream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_multistream.h; sourceTree = "<group>"; };
+		20764A1F23FC04B100DE7243 /* opus_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_types.h; sourceTree = "<group>"; };
+		20764A2023FC04B100DE7243 /* opus_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_defines.h; sourceTree = "<group>"; };
+		20764A2123FC04B100DE7243 /* opus_projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opus_projection.h; sourceTree = "<group>"; };
+		20764A2323FC04B100DE7243 /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopus.a; sourceTree = "<group>"; };
+		20764A2623FC058700DE7243 /* CSIDataQueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CSIDataQueue.c; sourceTree = "<group>"; };
+		20764A2723FC058700DE7243 /* CSIOpusEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSIOpusEncoder.h; sourceTree = "<group>"; };
+		20764A2823FC058700DE7243 /* CSIDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSIDataQueue.h; sourceTree = "<group>"; };
+		20764A2923FC058700DE7243 /* CSIOpusEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSIOpusEncoder.m; sourceTree = "<group>"; };
 		48C4D84657D9FF2BCEDA03EE /* Pods-AudioManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioManager.debug.xcconfig"; path = "Target Support Files/Pods-AudioManager/Pods-AudioManager.debug.xcconfig"; sourceTree = "<group>"; };
 		D4D87D29EE28003C39E05971 /* Pods_AudioManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -44,8 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20764A1723FAF72A00DE7243 /* libopus.a in Frameworks */,
 				D692F7370964FB84690CF643 /* Pods_AudioManager.framework in Frameworks */,
+				20764A2423FC04B100DE7243 /* libopus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +84,8 @@
 		20575AC623FAED0600B7C1B9 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
+				20764A2523FC058700DE7243 /* Opus Encoder */,
+				20764A1A23FC04B100DE7243 /* dependencies */,
 				20575ADC23FAEECD00B7C1B9 /* Helpers */,
 				20575ADB23FAEEC300B7C1B9 /* Controllers */,
 				20575AC723FAED0700B7C1B9 /* AppDelegate.swift */,
@@ -97,12 +110,59 @@
 		20575ADC23FAEECD00B7C1B9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				20764A1623FAF72A00DE7243 /* libopus.a */,
 				20575ADE23FAEEDC00B7C1B9 /* EZAudioManager.swift */,
 				20575ADD23FAEEDC00B7C1B9 /* OpusHelper.swift */,
 				20575ADF23FAEEDC00B7C1B9 /* VoiceManager.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		20764A1A23FC04B100DE7243 /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				20764A1B23FC04B100DE7243 /* include */,
+				20764A2223FC04B100DE7243 /* lib */,
+			);
+			path = dependencies;
+			sourceTree = SOURCE_ROOT;
+		};
+		20764A1B23FC04B100DE7243 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				20764A1C23FC04B100DE7243 /* opus */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		20764A1C23FC04B100DE7243 /* opus */ = {
+			isa = PBXGroup;
+			children = (
+				20764A1D23FC04B100DE7243 /* opus.h */,
+				20764A1E23FC04B100DE7243 /* opus_multistream.h */,
+				20764A1F23FC04B100DE7243 /* opus_types.h */,
+				20764A2023FC04B100DE7243 /* opus_defines.h */,
+				20764A2123FC04B100DE7243 /* opus_projection.h */,
+			);
+			path = opus;
+			sourceTree = "<group>";
+		};
+		20764A2223FC04B100DE7243 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				20764A2323FC04B100DE7243 /* libopus.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		20764A2523FC058700DE7243 /* Opus Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				20764A2623FC058700DE7243 /* CSIDataQueue.c */,
+				20764A2823FC058700DE7243 /* CSIDataQueue.h */,
+				20764A2723FC058700DE7243 /* CSIOpusEncoder.h */,
+				20764A2923FC058700DE7243 /* CSIOpusEncoder.m */,
+			);
+			path = "Opus Encoder";
 			sourceTree = "<group>";
 		};
 		7B1B1666B54AA7BF6D7B7610 /* Frameworks */ = {
@@ -239,6 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				20575AE223FAEEDC00B7C1B9 /* VoiceManager.swift in Sources */,
+				20764A2B23FC058700DE7243 /* CSIOpusEncoder.m in Sources */,
+				20764A2A23FC058700DE7243 /* CSIDataQueue.c in Sources */,
 				20575AE123FAEEDC00B7C1B9 /* EZAudioManager.swift in Sources */,
 				20575ACC23FAED0700B7C1B9 /* RecordAndPlayViewController.swift in Sources */,
 				20575AC823FAED0700B7C1B9 /* AppDelegate.swift in Sources */,
@@ -319,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -373,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -404,6 +466,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioManager/Helpers",
+					"$(PROJECT_DIR)/dependencies/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.AudioManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -436,6 +499,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioManager/Helpers",
+					"$(PROJECT_DIR)/dependencies/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.home.AudioManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
