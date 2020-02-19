@@ -19,6 +19,7 @@
 		20764A2423FC04B100DE7243 /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20764A2323FC04B100DE7243 /* libopus.a */; };
 		20764A2A23FC058700DE7243 /* CSIDataQueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 20764A2623FC058700DE7243 /* CSIDataQueue.c */; };
 		20764A2B23FC058700DE7243 /* CSIOpusEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 20764A2923FC058700DE7243 /* CSIOpusEncoder.m */; };
+		20764A3223FD35AC00DE7243 /* CSIOpusDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 20764A3123FD35AC00DE7243 /* CSIOpusDecoder.m */; };
 		D692F7370964FB84690CF643 /* Pods_AudioManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D87D29EE28003C39E05971 /* Pods_AudioManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		20764A2723FC058700DE7243 /* CSIOpusEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSIOpusEncoder.h; sourceTree = "<group>"; };
 		20764A2823FC058700DE7243 /* CSIDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSIDataQueue.h; sourceTree = "<group>"; };
 		20764A2923FC058700DE7243 /* CSIOpusEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSIOpusEncoder.m; sourceTree = "<group>"; };
+		20764A3023FD356600DE7243 /* CSIOpusDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSIOpusDecoder.h; sourceTree = "<group>"; };
+		20764A3123FD35AC00DE7243 /* CSIOpusDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSIOpusDecoder.m; sourceTree = "<group>"; };
 		48C4D84657D9FF2BCEDA03EE /* Pods-AudioManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudioManager.debug.xcconfig"; path = "Target Support Files/Pods-AudioManager/Pods-AudioManager.debug.xcconfig"; sourceTree = "<group>"; };
 		D4D87D29EE28003C39E05971 /* Pods_AudioManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -84,7 +87,7 @@
 		20575AC623FAED0600B7C1B9 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
-				20764A2523FC058700DE7243 /* Opus Encoder */,
+				20764A2523FC058700DE7243 /* Opus Helper */,
 				20764A1A23FC04B100DE7243 /* dependencies */,
 				20575ADC23FAEECD00B7C1B9 /* Helpers */,
 				20575ADB23FAEEC300B7C1B9 /* Controllers */,
@@ -154,15 +157,17 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		20764A2523FC058700DE7243 /* Opus Encoder */ = {
+		20764A2523FC058700DE7243 /* Opus Helper */ = {
 			isa = PBXGroup;
 			children = (
 				20764A2623FC058700DE7243 /* CSIDataQueue.c */,
 				20764A2823FC058700DE7243 /* CSIDataQueue.h */,
 				20764A2723FC058700DE7243 /* CSIOpusEncoder.h */,
 				20764A2923FC058700DE7243 /* CSIOpusEncoder.m */,
+				20764A3023FD356600DE7243 /* CSIOpusDecoder.h */,
+				20764A3123FD35AC00DE7243 /* CSIOpusDecoder.m */,
 			);
-			path = "Opus Encoder";
+			path = "Opus Helper";
 			sourceTree = "<group>";
 		};
 		7B1B1666B54AA7BF6D7B7610 /* Frameworks */ = {
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20764A3223FD35AC00DE7243 /* CSIOpusDecoder.m in Sources */,
 				20575AE223FAEEDC00B7C1B9 /* VoiceManager.swift in Sources */,
 				20764A2B23FC058700DE7243 /* CSIOpusEncoder.m in Sources */,
 				20764A2A23FC058700DE7243 /* CSIDataQueue.c in Sources */,

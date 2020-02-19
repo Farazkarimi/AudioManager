@@ -27,15 +27,17 @@ class RecordAndPlayViewController: UIViewController{
     var audioMutableBufferArray : [UnsafeMutablePointer<AudioBufferList>] = []
     var audioFile = EZAudioFile()
     var circularBuffer : TPCircularBuffer?
-    var opus:CSIOpusEncoder!
-    var opusHelper = OpusHelper()
+    var opusEncoder:CSIOpusEncoder!
+    var opusDecoder:CSIOpusDecoder!
+    var encodedData:[Data]! = []
     
     @IBOutlet weak var plot: EZAudioPlot!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        opus = CSIOpusEncoder(sampleRate: samplaRate, channels: 1, frameDuration: 0.01)
+        opusEncoder = CSIOpusEncoder(sampleRate: samplaRate, channels: 1, frameDuration: 0.01)
+        opusDecoder = CSIOpusDecoder(sampleRate: opus_int32(samplaRate), channels: 1, frameDuration: 0.01)
 //        var streamDescription:AudioStreamBasicDescription=AudioStreamBasicDescription()
 //        streamDescription.mSampleRate       = 16000.0
 //        streamDescription.mFormatID         = kAudioFormatLinearPCM
@@ -75,8 +77,20 @@ class RecordAndPlayViewController: UIViewController{
         microphone.microphoneOn = false
         output?.startPlayback()
         //VoiceManager.getIntance().playVoice()
-        buffers.forEach { (buffer) in
-             print(opus?.encode(buffer))
+        DispatchQueue.global(qos: .background).async {
+            self.buffers.forEach { (buffer) in
+                let data = self.opusEncoder?.encode(buffer)
+                print(data)
+                self.encodedData.append(data![5] as! Data)
+            }
+            
+            self.encodedData.forEach { (data) in
+                print(self.opusDecoder.decode(data))
+            }
+
+            DispatchQueue.main.async {
+                print("This is run on the main queue, after the previous code in outer block")
+            }
         }
         //print(opusHelper.encode(audioArray[0], frameSize: 5))
         VoiceManager.getIntance().data = audioArray
